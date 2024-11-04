@@ -16,14 +16,14 @@ int select_goat(list<Goat> trip);
 void delete_goat(list<Goat> &trip);
 void add_goat(list<Goat> &trip, string [], string []);
 void display_trip(list<Goat> trip);
-void shuffle_trip(list<Goat> trip);
+void reverse_trip(list<Goat> &trip);
+void find_goat(list<Goat> trip, int);
 
 int main_menu();
 
 /* NOTE: Implement 8 STL algorithms to this code. Original code contains add goat, delete goat, list goats
             - add find function to find a specific goat
             - add reverse function 
-            - add shuffle function
             - add */
 int main() {
     srand(time(0));
@@ -56,7 +56,7 @@ int main() {
     
     // Goat Manager 3001 Engine
     int sel = main_menu();
-    while (sel != 4) {
+    while (sel != 6) { // while sel doesnt equal 5, in which 5 is the end the program
         switch (sel) {
             case 1:
                 cout << "Adding a goat.\n";
@@ -69,6 +69,15 @@ int main() {
             case 3:    
                 cout << "Displaying goat data.\n";
                 display_trip(trip);
+                break;
+            case 4: // reverse function works 
+                cout << "Reversing the order of the trip.\n";
+                reverse_trip(trip);
+                break;
+            case 5:
+                cout << "Which goat are you trying to find? Input the integer placement of the goat.\n";
+                int placement;
+                cin >> placement;
                 break;
             default:
                 cout << "Invalid selection.\n";
@@ -86,11 +95,13 @@ int main_menu() {
     cout << "[1] Add a goat\n";
     cout << "[2] Delete a goat\n";
     cout << "[3] List goats\n";
-    cout << "[4] Quit\n";
+    cout << "[4] Reverse the trip\n";
+    cout << "[5] Find a goat\n";
+    cout << "[6] Quit\n";
     cout << "Choice --> ";
     int choice;
     cin >> choice;
-    while (choice < 1 || choice > 4) {
+    while (choice < 1 || choice > 5) {
         cout << "Invalid, again --> ";
         cin >> choice;
     }
@@ -139,6 +150,16 @@ int select_goat(list<Goat> trp) {
     return input;
 }
 
-void shuffle_trip(list<Goat> trip){
-    shuffle(trip.begin(), trip.end(), default_random_engine());
+void reverse_trip(list<Goat> &trip){
+    reverse(trip.begin(), trip.end());
+}
+
+void find_goat(list<Goat> trip, int placement){
+    auto it = find(trip.begin(), trip.end(), placement);
+    if (it == trip.end()){
+        cout << "Goat cannot be found.\n";
+    }
+    else if (it != trip.end()){
+        cout 
+    }
 }
