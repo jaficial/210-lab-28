@@ -1,8 +1,13 @@
+// COMSC-210 | Jed Aficial | Lab 28
+// github link: https://github.com/jaficial/210-lab-28
+
 #include <iostream>
 #include <fstream>
 #include <iomanip>
 #include <list>
 #include "Goat.h"
+#include <algorithm>
+#include <random>
 using namespace std;
 
 const int SZ_NAMES = 200, SZ_COLORS = 25;
@@ -11,8 +16,15 @@ int select_goat(list<Goat> trip);
 void delete_goat(list<Goat> &trip);
 void add_goat(list<Goat> &trip, string [], string []);
 void display_trip(list<Goat> trip);
+void shuffle_trip(list<Goat> trip);
+
 int main_menu();
 
+/* NOTE: Implement 8 STL algorithms to this code. Original code contains add goat, delete goat, list goats
+            - add find function to find a specific goat
+            - add reverse function 
+            - add shuffle function
+            - add */
 int main() {
     srand(time(0));
     bool again;
@@ -125,4 +137,8 @@ int select_goat(list<Goat> trp) {
         cin >> input;
     }
     return input;
+}
+
+void shuffle_trip(list<Goat> trip){
+    shuffle(trip.begin(), trip.end(), default_random_engine());
 }
