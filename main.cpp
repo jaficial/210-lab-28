@@ -22,7 +22,7 @@ void find_goat(list<Goat> trip, int);
 int main_menu();
 
 /* NOTE: Implement 8 STL algorithms to this code. Original code contains add goat, delete goat, list goats
-            - add find function to find a specific goat
+// note: find wont work so far since find is comparing the Goat type to a const int type
             - add reverse function 
             - add */
 int main() {
@@ -78,6 +78,7 @@ int main() {
                 cout << "Which goat are you trying to find? Input the integer placement of the goat.\n";
                 int placement;
                 cin >> placement;
+                find_goat(trip, placement);
                 break;
             default:
                 cout << "Invalid selection.\n";
@@ -154,14 +155,3 @@ void reverse_trip(list<Goat> &trip){
     reverse(trip.begin(), trip.end());
 }
 
-void find_goat(list<Goat> trip, int placement){ // find function returns iterator to the found element
-    auto it = find(trip.begin(), trip.end(), placement);
-    it++;
-    if (it == trip.end()){
-        cout << "Goat cannot be found.\n";
-    }
-    else if (it != trip.end()){
-        cout << "The goat you are looking for is: " << it->get_age();
-
-    }
-}
