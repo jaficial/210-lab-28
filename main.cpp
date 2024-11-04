@@ -19,13 +19,19 @@ void display_trip(list<Goat> trip);
 void reverse_trip(list<Goat> &trip);
 void clear_trip(list<Goat> &trip);
 void pop_head(list<Goat> &trip);
+void pop_tail(list<Goat> &trip);
+void trip_empty(list<Goat> trip);
 
 int main_menu();
 
 /* NOTE: Implement 8 STL algorithms to this code. Original code contains add goat, delete goat, list goats
 // note: find wont work so far since find is comparing the Goat type to a const int type
-            - add reverse function 
-            - add clear function to erase all data*/
+    list of added functions so far:
+    - reverse trip order
+    - clear trip
+    - pop head of trip
+    - pop tail of trip        
+*/
 int main() {
     srand(time(0));
     bool again;
@@ -57,7 +63,7 @@ int main() {
     
     // Goat Manager 3001 Engine
     int sel = main_menu();
-    while (sel != 6) { // while sel doesnt equal 5, in which 5 is the end the program
+    while (sel != 9) { // while sel doesnt equal 5, in which 5 is the end the program
         switch (sel) {
             case 1:
                 cout << "Adding a goat.\n";
@@ -79,7 +85,16 @@ int main() {
                 clear_trip(trip);
                 break;
             case 6:
-
+                cout << "Deleting the head goat of the trip.\n";
+                pop_head(trip);
+                break;
+            case 7:
+                cout << "Deleting the tail goat of the trip.\n";
+                pop_tail(trip);
+                break;
+            case 8:
+                cout << "Checking if the trip is empty or not.\n";
+                break;
             default:
                 cout << "Invalid selection.\n";
                 break;
@@ -98,11 +113,13 @@ int main_menu() {
     cout << "[3] List goats\n";
     cout << "[4] Reverse the trip\n";
     cout << "[5] Clear the trip\n";
-    cout << "[7] Quit\n";
+    cout << "[6] Pop the head goat\n";
+    cout << "[7] Pop the tail goat\n";
+    cout << "[9] Quit\n";
     cout << "Choice --> ";
     int choice;
     cin >> choice;
-    while (choice < 1 || choice > 7) {
+    while (choice < 1 || choice > 9) {
         cout << "Invalid, again --> ";
         cin >> choice;
     }
@@ -158,4 +175,12 @@ void reverse_trip(list<Goat> &trip){
 void clear_trip(list<Goat> &trip){
     trip.clear();
     cout << "Trip is now cleared.\n";
+}
+
+void pop_head(list<Goat> &trip){
+    trip.pop_front();
+}
+
+void pop_tail(list<Goat> &trip){
+    trip.pop_back();
 }
