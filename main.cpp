@@ -22,7 +22,6 @@ void clear_trip(list<Goat> &trip);
 void pop_head(list<Goat> &trip);
 void pop_tail(list<Goat> &trip);
 void trip_empty(list<Goat> trip);
-// void find_goat(list<Goat> trip, string, int, string);
 void swap_goat(list<Goat> &trip);
 
 int main_menu();
@@ -35,8 +34,7 @@ int main_menu();
     - pop head of trip
     - pop tail of trip  
     - checks if trip is empty or not
-    - find a specific goat *STILL DOESNT WORK*
-    - swap function
+    - swap function switches the positions of two objects
 */
 int main() {
     srand(time(0));
@@ -86,39 +84,27 @@ int main() {
                 cout << "Displaying goat data.\n";
                 display_trip(trip);
                 break;
-            case 4: // reverse function works 
+            case 4: // Reverses the order of the goats in the trip
                 cout << "Reversing the order of the trip.\n";
                 reverse_trip(trip);
                 break;
-            case 5:
+            case 5: // Erases all data in the trip list
                 clear_trip(trip);
                 break;
-            case 6:
+            case 6: // Deletes the head goat of the trip
                 cout << "Deleting the head goat of the trip.\n";
                 pop_head(trip);
                 break;
-            case 7:
+            case 7: // Deletes the tail goat of the trip
                 cout << "Deleting the tail goat of the trip.\n";
                 pop_tail(trip);
                 break;
-            case 8:
+            case 8: // Runs a check to see if the trip is empty or not
                 cout << "Checking if the trip is empty or not.\n";
                 trip_empty(trip);
                 break;
             case 9:
                 cout << "Swapping two goats of choice.\n";
-                // cout << "Looking for a specific goat in the trip.\n";
-                // cout << "Name of the goat: ";
-                // cin.ignore();
-                // getline(cin, temp_goat_name);
-                // cout << "Age of the goat: ";
-                // cin >> temp_goat_age;
-                // cout << "Color of the goat: ";
-                // cin.ignore();
-                // getline(cin, temp_goat_color);
-                // // NOTE: It won't let me initialize/define string and Goat types within this switch case. 
-                // // Initialized temp variable outside of while loop, and will define temp goat variable in find function
-                // find_goat(trip,temp_goat_name, temp_goat_age, temp_goat_color);
                 swap_goat(trip);
                 break;
             default:
@@ -225,15 +211,17 @@ void trip_empty(list<Goat> trip){
 
 void swap_goat(list<Goat> &trip){
     cout << "First selection: ";
-    int goat1 = select_goat(trip);
+    int goat1 = select_goat(trip) - 1;
     cout << "Second selection: ";
-    int goat2 = select_goat(trip);
+    int goat2 = select_goat(trip) - 1;
     auto goat1_iter = trip.begin();
     auto goat2_iter = trip.begin();
-    swap(goat1, goat2);
+    for (int i = 0; i < goat1; i++){
+        goat1_iter++;
+    }
+    for (int i = 0; i < goat2; i++){
+        goat2_iter++;
+    }
+    swap(*goat1_iter, *goat2_iter); // use pointer to the objects being swapped, without pointer does not work
 
 }
-// void find_goat(list<Goat> trip, string temp_name, int temp_age, string temp_color){
-//     Goat temp_goat(temp_name, temp_age, temp_color);
-//     auto it = find(trip.begin(), trip.end(), temp_goat);
-// }
