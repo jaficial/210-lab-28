@@ -17,14 +17,15 @@ void delete_goat(list<Goat> &trip);
 void add_goat(list<Goat> &trip, string [], string []);
 void display_trip(list<Goat> trip);
 void reverse_trip(list<Goat> &trip);
-void find_goat(list<Goat> trip, int);
+void clear_trip(list<Goat> &trip);
+void pop_head(list<Goat> &trip);
 
 int main_menu();
 
 /* NOTE: Implement 8 STL algorithms to this code. Original code contains add goat, delete goat, list goats
 // note: find wont work so far since find is comparing the Goat type to a const int type
             - add reverse function 
-            - add */
+            - add clear function to erase all data*/
 int main() {
     srand(time(0));
     bool again;
@@ -75,11 +76,10 @@ int main() {
                 reverse_trip(trip);
                 break;
             case 5:
-                cout << "Which goat are you trying to find? Input the integer placement of the goat.\n";
-                int placement;
-                cin >> placement;
-                find_goat(trip, placement);
+                clear_trip(trip);
                 break;
+            case 6:
+
             default:
                 cout << "Invalid selection.\n";
                 break;
@@ -97,12 +97,12 @@ int main_menu() {
     cout << "[2] Delete a goat\n";
     cout << "[3] List goats\n";
     cout << "[4] Reverse the trip\n";
-    cout << "[5] Find a goat\n";
-    cout << "[6] Quit\n";
+    cout << "[5] Clear the trip\n";
+    cout << "[7] Quit\n";
     cout << "Choice --> ";
     int choice;
     cin >> choice;
-    while (choice < 1 || choice > 5) {
+    while (choice < 1 || choice > 7) {
         cout << "Invalid, again --> ";
         cin >> choice;
     }
@@ -155,3 +155,7 @@ void reverse_trip(list<Goat> &trip){
     reverse(trip.begin(), trip.end());
 }
 
+void clear_trip(list<Goat> &trip){
+    trip.clear();
+    cout << "Trip is now cleared.\n";
+}
