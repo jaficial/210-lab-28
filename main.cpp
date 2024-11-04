@@ -23,6 +23,8 @@ void pop_head(list<Goat> &trip);
 void pop_tail(list<Goat> &trip);
 void trip_empty(list<Goat> trip);
 void swap_goat(list<Goat> &trip);
+void push_goat_front(list <Goat> &trip, string, int, string);
+void push_goat_back(list <Goat> &trip, string, int, string);
 
 int main_menu();
 
@@ -35,6 +37,7 @@ int main_menu();
     - pop tail of trip  
     - checks if trip is empty or not
     - swap function switches the positions of two objects
+    - 
 */
 int main() {
     srand(time(0));
@@ -70,7 +73,7 @@ int main() {
     string temp_goat_color;
     // Goat Manager 3001 Engine
     int sel = main_menu();
-    while (sel != 10) { // while sel doesnt equal 5, in which 5 is the end the program
+    while (sel != 12) { // while sel doesnt equal 5, in which 5 is the end the program
         switch (sel) {
             case 1:
                 cout << "Adding a goat.\n";
@@ -103,7 +106,7 @@ int main() {
                 cout << "Checking if the trip is empty or not.\n";
                 trip_empty(trip);
                 break;
-            case 9:
+            case 9: // Allows user to choose two goats from trip, which then swaps the positions of the two
                 cout << "Swapping two goats of choice.\n";
                 swap_goat(trip);
                 break;
@@ -129,7 +132,9 @@ int main_menu() {
     cout << "[7] Pop the tail goat\n";
     cout << "[8] Check if the trip is empty or not\n";
     cout << "[9] Swap two goats\n";
-    cout << "[10] Quit\n";
+    cout << "[10] Push a goat to the front\n";
+    cout << "[11] Push a goat to the back\n";
+    cout << "[12] Quit\n";
     cout << "Choice --> ";
     int choice;
     cin >> choice;
@@ -183,24 +188,24 @@ int select_goat(list<Goat> trp) {
 }
 
 void reverse_trip(list<Goat> &trip){
-    reverse(trip.begin(), trip.end());
+    reverse(trip.begin(), trip.end()); // uses reverse() to reverse the order of the goats in the trip
 }
 
 void clear_trip(list<Goat> &trip){
-    trip.clear();
+    trip.clear(); // uses clear() to erase all data in the list
     cout << "Trip is now cleared.\n";
 }
 
 void pop_head(list<Goat> &trip){
-    trip.pop_front();
+    trip.pop_front(); // uses pop_front() to erase the data of the goat at the head of the trip
 }
 
 void pop_tail(list<Goat> &trip){
-    trip.pop_back();
+    trip.pop_back(); // uses pop_back() to erase the data of the goat at the tail of the trip
 }
 
-void trip_empty(list<Goat> trip){
-    int empty_test = trip.empty();
+void trip_empty(list<Goat> trip){ 
+    int empty_test = trip.empty(); // uses empty() to test if the list is empty or not
     if (empty_test == 1) {
         cout << "There are no goats in the trip.\n";
     }
@@ -211,12 +216,12 @@ void trip_empty(list<Goat> trip){
 
 void swap_goat(list<Goat> &trip){
     cout << "First selection: ";
-    int goat1 = select_goat(trip) - 1;
+    int goat1 = select_goat(trip) - 1; // -1 to have iterator go off index of the list
     cout << "Second selection: ";
     int goat2 = select_goat(trip) - 1;
-    auto goat1_iter = trip.begin();
-    auto goat2_iter = trip.begin();
-    for (int i = 0; i < goat1; i++){
+    auto goat1_iter = trip.begin(); // iterator for first goat selection
+    auto goat2_iter = trip.begin(); // iterator for second goat selection
+    for (int i = 0; i < goat1; i++){ 
         goat1_iter++;
     }
     for (int i = 0; i < goat2; i++){
@@ -224,4 +229,9 @@ void swap_goat(list<Goat> &trip){
     }
     swap(*goat1_iter, *goat2_iter); // use pointer to the objects being swapped, without pointer does not work
 
+}
+
+void push_goat_front(list <Goat> &trip, string temp_name, int temp_age, string temp_color){
+    Goat temp_goat(temp_name, temp_age, temp_color);
+    trip.push_front(temp_goat);
 }
