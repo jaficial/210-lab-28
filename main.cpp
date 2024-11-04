@@ -23,7 +23,7 @@ void pop_head(list<Goat> &trip);
 void pop_tail(list<Goat> &trip);
 void trip_empty(list<Goat> trip);
 // void find_goat(list<Goat> trip, string, int, string);
-void swap_goat(Goat, Goat);
+void swap_goat(list<Goat> &trip);
 
 int main_menu();
 
@@ -106,6 +106,7 @@ int main() {
                 trip_empty(trip);
                 break;
             case 9:
+                cout << "Swapping two goats of choice.\n";
                 // cout << "Looking for a specific goat in the trip.\n";
                 // cout << "Name of the goat: ";
                 // cin.ignore();
@@ -118,7 +119,7 @@ int main() {
                 // // NOTE: It won't let me initialize/define string and Goat types within this switch case. 
                 // // Initialized temp variable outside of while loop, and will define temp goat variable in find function
                 // find_goat(trip,temp_goat_name, temp_goat_age, temp_goat_color);
-
+                swap_goat(trip);
                 break;
             default:
                 cout << "Invalid selection.\n";
@@ -141,7 +142,7 @@ int main_menu() {
     cout << "[6] Pop the head goat\n";
     cout << "[7] Pop the tail goat\n";
     cout << "[8] Check if the trip is empty or not\n";
-    cout << "[9] Find a specific goat\n";
+    cout << "[9] Swap two goats\n";
     cout << "[10] Quit\n";
     cout << "Choice --> ";
     int choice;
@@ -222,11 +223,15 @@ void trip_empty(list<Goat> trip){
     }
 }
 
-void swap(list<Goat> &trip){
-    int goat1;
-    int goat2;
+void swap_goat(list<Goat> &trip){
     cout << "First selection: ";
-    cin 
+    int goat1 = select_goat(trip);
+    cout << "Second selection: ";
+    int goat2 = select_goat(trip);
+    auto goat1_iter = trip.begin();
+    auto goat2_iter = trip.begin();
+    swap(goat1, goat2);
+
 }
 // void find_goat(list<Goat> trip, string temp_name, int temp_age, string temp_color){
 //     Goat temp_goat(temp_name, temp_age, temp_color);
