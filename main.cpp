@@ -154,12 +154,14 @@ void reverse_trip(list<Goat> &trip){
     reverse(trip.begin(), trip.end());
 }
 
-void find_goat(list<Goat> trip, int placement){
+void find_goat(list<Goat> trip, int placement){ // find function returns iterator to the found element
     auto it = find(trip.begin(), trip.end(), placement);
+    it++;
     if (it == trip.end()){
         cout << "Goat cannot be found.\n";
     }
     else if (it != trip.end()){
-        cout 
+        cout << "The goat you are looking for is: " << it->get_age();
+
     }
 }
