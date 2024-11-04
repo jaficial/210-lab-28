@@ -30,7 +30,9 @@ int main_menu();
     - reverse trip order
     - clear trip
     - pop head of trip
-    - pop tail of trip        
+    - pop tail of trip  
+    - checks if trip is empty or not
+    -       
 */
 int main() {
     srand(time(0));
@@ -94,6 +96,7 @@ int main() {
                 break;
             case 8:
                 cout << "Checking if the trip is empty or not.\n";
+                trip_empty(trip);
                 break;
             default:
                 cout << "Invalid selection.\n";
@@ -115,6 +118,7 @@ int main_menu() {
     cout << "[5] Clear the trip\n";
     cout << "[6] Pop the head goat\n";
     cout << "[7] Pop the tail goat\n";
+    cout << "[8] Check if the trip is empty or not\n";
     cout << "[9] Quit\n";
     cout << "Choice --> ";
     int choice;
@@ -183,4 +187,14 @@ void pop_head(list<Goat> &trip){
 
 void pop_tail(list<Goat> &trip){
     trip.pop_back();
+}
+
+void trip_empty(list<Goat> trip){
+    int empty_test = trip.empty();
+    if (empty_test == 1) {
+        cout << "There are no goats in the trip.\n";
+    }
+    else {
+        cout << "There are goats in the trip.\n";
+    }
 }
