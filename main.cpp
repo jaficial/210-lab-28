@@ -22,7 +22,8 @@ void clear_trip(list<Goat> &trip);
 void pop_head(list<Goat> &trip);
 void pop_tail(list<Goat> &trip);
 void trip_empty(list<Goat> trip);
-void find_goat(list<Goat> trip, string, int, string);
+// void find_goat(list<Goat> trip, string, int, string);
+void swap_goat(Goat, Goat);
 
 int main_menu();
 
@@ -34,7 +35,8 @@ int main_menu();
     - pop head of trip
     - pop tail of trip  
     - checks if trip is empty or not
-    - find a specific goat
+    - find a specific goat *STILL DOESNT WORK*
+    - swap function
 */
 int main() {
     srand(time(0));
@@ -104,19 +106,19 @@ int main() {
                 trip_empty(trip);
                 break;
             case 9:
-                cout << "Looking for a specific goat in the trip.\n";
-                cout << "Name of the goat: ";
-                cin.ignore();
-                getline(cin, temp_goat_name);
-                cout << "Age of the goat: ";
-                cin >> temp_goat_age;
-                cout << "Color of the goat: ";
-                cin.ignore();
-                getline(cin, temp_goat_color);
-                cout << "Name: " << temp_goat_name << ", Age: " << temp_goat_age << ", Color: " << temp_goat_color << endl;
-                // NOTE: It won't let me initialize/define string and Goat types within this switch case. 
-                // Initialized temp variable outside of while loop, and will define temp goat variable in find function
-                // find_goat(trip,)
+                // cout << "Looking for a specific goat in the trip.\n";
+                // cout << "Name of the goat: ";
+                // cin.ignore();
+                // getline(cin, temp_goat_name);
+                // cout << "Age of the goat: ";
+                // cin >> temp_goat_age;
+                // cout << "Color of the goat: ";
+                // cin.ignore();
+                // getline(cin, temp_goat_color);
+                // // NOTE: It won't let me initialize/define string and Goat types within this switch case. 
+                // // Initialized temp variable outside of while loop, and will define temp goat variable in find function
+                // find_goat(trip,temp_goat_name, temp_goat_age, temp_goat_color);
+
                 break;
             default:
                 cout << "Invalid selection.\n";
@@ -220,6 +222,13 @@ void trip_empty(list<Goat> trip){
     }
 }
 
-void find_goat(list<Goat> trip, string temp_name, int temp_age, string temp_color){
-    cout << "Made it here";
+void swap(list<Goat> &trip){
+    int goat1;
+    int goat2;
+    cout << "First selection: ";
+    cin 
 }
+// void find_goat(list<Goat> trip, string temp_name, int temp_age, string temp_color){
+//     Goat temp_goat(temp_name, temp_age, temp_color);
+//     auto it = find(trip.begin(), trip.end(), temp_goat);
+// }
