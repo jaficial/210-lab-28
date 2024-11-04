@@ -1,6 +1,6 @@
 // COMSC-210 | Jed Aficial | Lab 28
 // github link: https://github.com/jaficial/210-lab-28
-//
+
 #include <iostream>
 #include <fstream>
 #include <iomanip>
@@ -8,6 +8,7 @@
 #include "Goat.h"
 #include <algorithm>
 #include <random>
+#include <string>
 using namespace std;
 
 const int SZ_NAMES = 200, SZ_COLORS = 25;
@@ -21,6 +22,7 @@ void clear_trip(list<Goat> &trip);
 void pop_head(list<Goat> &trip);
 void pop_tail(list<Goat> &trip);
 void trip_empty(list<Goat> trip);
+void find_goat(list<Goat> trip, Goat);
 
 int main_menu();
 
@@ -32,7 +34,7 @@ int main_menu();
     - pop head of trip
     - pop tail of trip  
     - checks if trip is empty or not
-    -       
+    - find a specific goat
 */
 int main() {
     srand(time(0));
@@ -65,7 +67,7 @@ int main() {
     
     // Goat Manager 3001 Engine
     int sel = main_menu();
-    while (sel != 9) { // while sel doesnt equal 5, in which 5 is the end the program
+    while (sel != 10) { // while sel doesnt equal 5, in which 5 is the end the program
         switch (sel) {
             case 1:
                 cout << "Adding a goat.\n";
@@ -98,6 +100,20 @@ int main() {
                 cout << "Checking if the trip is empty or not.\n";
                 trip_empty(trip);
                 break;
+            case 9:
+                string temp_goat_name;
+                int temp_goat_age;
+                string temp_goat_color;
+                cout << "Looking for a specific goat in the trip.\n";
+                cout << "Name of the goat: ";
+                getline(cin, temp_goat_name);
+                cout << "Age of the goat: ";
+                cin >> temp_goat_age;
+                cout << "Color of the goat: ";
+                getline(cin, temp_goat_color);
+                Goat temp_goat(temp_goat_name, temp_goat_age, temp_goat_color);
+
+                break;
             default:
                 cout << "Invalid selection.\n";
                 break;
@@ -119,7 +135,8 @@ int main_menu() {
     cout << "[6] Pop the head goat\n";
     cout << "[7] Pop the tail goat\n";
     cout << "[8] Check if the trip is empty or not\n";
-    cout << "[9] Quit\n";
+    cout << "[9] Find a specific goat\n";
+    cout << "[10] Quit\n";
     cout << "Choice --> ";
     int choice;
     cin >> choice;
@@ -197,4 +214,8 @@ void trip_empty(list<Goat> trip){
     else {
         cout << "There are goats in the trip.\n";
     }
+}
+
+void find_goat(list<Goat> trip, Goat temp_goat){
+    cout << "Made it here"
 }
