@@ -29,15 +29,15 @@ void push_goat_back(list <Goat> &trip, string, int, string);
 int main_menu();
 
 /* NOTE: Implement 8 STL algorithms to this code. Original code contains add goat, delete goat, list goats
-// note: find wont work so far since find is comparing the Goat type to a const int type
-    list of added functions so far:
+    list of added functions:
     - reverse trip order
     - clear trip
     - pop head of trip
     - pop tail of trip  
     - checks if trip is empty or not
     - swap function switches the positions of two objects
-    - 
+    - push_front function allows the user to fill out the parameters of a Goat object to be pushed to the front of the trip
+    - push_back function allows the user to fill out the parameters of a Goat object to be pushed to the back of the trip
 */
 int main() {
     srand(time(0));
@@ -110,6 +110,27 @@ int main() {
                 cout << "Swapping two goats of choice.\n";
                 swap_goat(trip);
                 break;
+            case 10:
+                cout << "Name of the goat: ";
+                cin.ignore();
+                getline(cin, temp_goat_name);
+                cout << "Age of the goat: ";
+                cin >> temp_goat_age;
+                cout << "Color of the goat: ";
+                cin.ignore();
+                getline(cin, temp_goat_color);
+                push_goat_front(trip, temp_goat_name, temp_goat_age, temp_goat_color);
+                break;
+            case 11:
+                cout << "Name of the goat: ";
+                cin.ignore();
+                getline(cin, temp_goat_name);
+                cout << "Age of the goat: ";
+                cin >> temp_goat_age;
+                cout << "Color of the goat: ";
+                cin.ignore();
+                getline(cin, temp_goat_color);
+                push_goat_back(trip, temp_goat_name, temp_goat_age, temp_goat_color);
             default:
                 cout << "Invalid selection.\n";
                 break;
@@ -138,7 +159,7 @@ int main_menu() {
     cout << "Choice --> ";
     int choice;
     cin >> choice;
-    while (choice < 1 || choice > 10) {
+    while (choice < 1 || choice > 12) {
         cout << "Invalid, again --> ";
         cin >> choice;
     }
@@ -232,6 +253,11 @@ void swap_goat(list<Goat> &trip){
 }
 
 void push_goat_front(list <Goat> &trip, string temp_name, int temp_age, string temp_color){
+    Goat temp_goat(temp_name, temp_age, temp_color); // defines temporary goat object 
+    trip.push_front(temp_goat); // uses push_front() function to push the temporary goat object to the front of the trip
+}
+
+void push_goat_back(list <Goat> &trip, string temp_name, int temp_age, string temp_color){
     Goat temp_goat(temp_name, temp_age, temp_color);
-    trip.push_front(temp_goat);
+    trip.push_back(temp_goat);// uses push_back() function to push the temporary goat object to the back of the trip
 }
